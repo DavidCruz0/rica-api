@@ -16,6 +16,7 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api/investigadores")
 public class InvestigadorController {
+
     private final InvestigadorService investigadorService;
 
     public InvestigadorController(InvestigadorService investigadorService) {

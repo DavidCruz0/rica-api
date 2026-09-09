@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 
 public class InvestigadorRequest {
 
-     @NotBlank(message = "El nombre completo es obligatorio")
+    @NotBlank(message = "El nombre completo es obligatorio")
     private String nombreCompleto;
 
     @NotBlank(message = "El correo institucional es obligatorio")

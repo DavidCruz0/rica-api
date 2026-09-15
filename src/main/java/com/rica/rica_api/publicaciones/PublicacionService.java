@@ -1,8 +1,11 @@
-package com.rica.rica_api;
+package com.rica.rica_api.publicaciones;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+
+import com.rica.rica_api.compartido.RecursoNoEncontradoException;
+import com.rica.rica_api.investigadores.InvestigadorRepository;
 
 @Service
 public class PublicacionService {

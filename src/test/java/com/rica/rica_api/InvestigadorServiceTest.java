@@ -13,6 +13,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.rica.rica_api.compartido.RecursoNoEncontradoException;
+import com.rica.rica_api.investigadores.CorreoDuplicadoException;
+import com.rica.rica_api.investigadores.Investigador;
+import com.rica.rica_api.investigadores.InvestigadorRepository;
+import com.rica.rica_api.investigadores.InvestigadorService;
+
 @ExtendWith(MockitoExtension.class)
 public class InvestigadorServiceTest {
 

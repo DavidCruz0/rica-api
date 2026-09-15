@@ -1,4 +1,4 @@
-package com.rica.rica_api;
+package com.rica.rica_api.publicaciones;
 
 public class PublicacionMapper {
 
@@ -12,6 +12,7 @@ public class PublicacionMapper {
         publicacion.setTitulo(request.getTitulo());
         publicacion.setTipo(request.getTipo());
         publicacion.setAnio(request.getAnio());
+        publicacion.setDetalles(request.getDetalles());
         return publicacion;
     }
 

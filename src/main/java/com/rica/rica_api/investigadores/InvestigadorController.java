@@ -1,4 +1,4 @@
-package com.rica.rica_api;
+package com.rica.rica_api.investigadores;
 
 import java.net.URI;
 import java.util.List;

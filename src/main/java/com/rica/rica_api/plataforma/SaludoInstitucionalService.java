@@ -1,4 +1,4 @@
-package com.rica.rica_api.plataforma;
+    package com.rica.rica_api.plataforma;
 
 import org.springframework.stereotype.Service;
 

@@ -1,20 +1,24 @@
-package com.rica.rica_api.investigadores;
+package com.rica.rica_api.investigadores.aplicacion;
 
 import org.springframework.stereotype.Component;
+
+import com.rica.rica_api.investigadores.dominio.CorreoDuplicadoException;
+import com.rica.rica_api.investigadores.dominio.CorreoInstitucional;
+import com.rica.rica_api.investigadores.dominio.Investigador;
 
 @Component
 public class InvestigadorFactory {
 
-  private final InvestigadorRepository investigadorRepository;
+  private final RepositorioInvestigadores repositorioInvestigadores;
 
-  public InvestigadorFactory(InvestigadorRepository investigadorRepository) {
-    this.investigadorRepository = investigadorRepository;
+  public InvestigadorFactory(RepositorioInvestigadores repositorioInvestigadores) {
+    this.repositorioInvestigadores = repositorioInvestigadores;
   }
 
   public Investigador crear(String nombreCompleto, String correoInstitucional, String grupoInvestigacion) {
     CorreoInstitucional correo = new CorreoInstitucional(correoInstitucional);
 
-    if (investigadorRepository.existsByCorreoInstitucional_Valor(correo.valor())) {
+    if (repositorioInvestigadores.existeCorreo(correo.valor())) {
       throw new CorreoDuplicadoException(
           "Ya existe un investigador registrado con el correo " + correo.valor());
     }

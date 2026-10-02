@@ -1,7 +1,6 @@
 package com.rica.rica_api;
 
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Optional;
@@ -17,18 +16,18 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.rica.rica_api.compartido.RecursoNoEncontradoException;
-import com.rica.rica_api.investigadores.CorreoDuplicadoException;
-import com.rica.rica_api.investigadores.CorreoInstitucional;
-import com.rica.rica_api.investigadores.Investigador;
-import com.rica.rica_api.investigadores.InvestigadorFactory;
-import com.rica.rica_api.investigadores.InvestigadorRepository;
-import com.rica.rica_api.investigadores.InvestigadorService;
+import com.rica.rica_api.investigadores.aplicacion.InvestigadorFactory;
+import com.rica.rica_api.investigadores.aplicacion.InvestigadorService;
+import com.rica.rica_api.investigadores.aplicacion.RepositorioInvestigadores;
+import com.rica.rica_api.investigadores.dominio.CorreoDuplicadoException;
+import com.rica.rica_api.investigadores.dominio.CorreoInstitucional;
+import com.rica.rica_api.investigadores.dominio.Investigador;
 
 @ExtendWith(MockitoExtension.class)
 public class InvestigadorServiceTest {
 
     @Mock
-    private InvestigadorRepository investigadorRepository;
+    private RepositorioInvestigadores investigadorRepository;
 
     @Mock
     private InvestigadorFactory investigadorFactory;
@@ -40,7 +39,7 @@ public class InvestigadorServiceTest {
     void buscarPorIdDevuelveElInvestigadorCuandoExiste() {
         Investigador investigador = new Investigador(1L, "Ana Torres",
                 new CorreoInstitucional("ana.torres@uptc.edu.co"), "GIT-UPTC");
-        when(investigadorRepository.findById(1L)).thenReturn(Optional.of(investigador));
+        when(investigadorRepository.buscarPorId(1L)).thenReturn(Optional.of(investigador));
 
         Investigador resultado = investigadorService.buscarPorId(1L);
 
@@ -49,7 +48,7 @@ public class InvestigadorServiceTest {
 
     @Test
     void buscarPorIdLanzaExcepcionCuandoNoExiste() {
-        when(investigadorRepository.findById(99L)).thenReturn(Optional.empty());
+        when(investigadorRepository.buscarPorId(99L)).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> investigadorService.buscarPorId(99L))
                 .isInstanceOf(RecursoNoEncontradoException.class)

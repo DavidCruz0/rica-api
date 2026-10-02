@@ -1,4 +1,4 @@
-package com.rica.rica_api.investigadores.infraestructura.entrada.web;
+package com.rica.rica_api.investigadores;
 
 import java.net.URI;
 import java.util.List;
@@ -11,18 +11,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rica.rica_api.investigadores.aplicacion.InvestigadorUseCase;
-import com.rica.rica_api.investigadores.dominio.Investigador;
-
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/investigadores")
 public class InvestigadorController {
 
-    private final InvestigadorUseCase investigadorService;
+    private final InvestigadorService investigadorService;
 
-    public InvestigadorController(InvestigadorUseCase investigadorService) {
+    public InvestigadorController(InvestigadorService investigadorService) {
         this.investigadorService = investigadorService;
     }
 

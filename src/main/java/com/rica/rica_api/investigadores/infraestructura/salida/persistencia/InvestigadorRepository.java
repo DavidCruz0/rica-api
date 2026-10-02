@@ -1,10 +1,8 @@
-package com.rica.rica_api.investigadores.infraestructura.salida.persistencia;
+package com.rica.rica_api.investigadores;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.rica.rica_api.investigadores.dominio.Investigador;
 
 public interface InvestigadorRepository extends JpaRepository<Investigador, Long> {
 

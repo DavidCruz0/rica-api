@@ -1,39 +1,35 @@
-package com.rica.rica_api.investigadores.aplicacion;
+package com.rica.rica_api.investigadores;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import com.rica.rica_api.compartido.RecursoNoEncontradoException;
-import com.rica.rica_api.investigadores.dominio.Investigador;
 
 @Service
-public class InvestigadorService implements InvestigadorUseCase {
+public class InvestigadorService {
     
-    RepositorioInvestigadores repositorioInvestigadores;
+    private final InvestigadorRepository investigadorRepository;
     private final InvestigadorFactory investigadorFactory;
 
-    public InvestigadorService(RepositorioInvestigadores repositorioInvestigadores, InvestigadorFactory investigadorFactory) {
-        this.repositorioInvestigadores = repositorioInvestigadores;
+    public InvestigadorService(InvestigadorRepository investigadorRepository, InvestigadorFactory investigadorFactory) {
+        this.investigadorRepository = investigadorRepository;
         this.investigadorFactory = investigadorFactory;
     }
 
-    @Override 
     public List<Investigador> listarTodos() {
-        return repositorioInvestigadores.listarTodos();
+        return investigadorRepository.findAll();
     }
 
-    @Override 
     public Investigador buscarPorId(Long id) {
-        return repositorioInvestigadores.buscarPorId(id)
+        return investigadorRepository.findById(id)
                 .orElseThrow(() -> new RecursoNoEncontradoException(
                         "No existe un investigador con id " + id));
     }
 
-    @Override 
     public Investigador registrar(String nombreCompleto, String correoInstitucional, String grupoInvestigacion) {
         Investigador investigador = investigadorFactory.crear(nombreCompleto, correoInstitucional, grupoInvestigacion);
-        return repositorioInvestigadores.guardar(investigador);
+        return investigadorRepository.save(investigador);
     }
     
 }
